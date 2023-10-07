@@ -3,3 +3,104 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    transition: all 1s ease-in-out;
+    background-image: url("clouds-1867317_1280.jpg");
+}
+
+.sunny {
+    background-image: url("grooveland-designs-zjoydJb17mE-unsplash.jpg");
+}
+
+.clear {
+    background-image: url("pexels-pixabay-268533.jpg");
+}
+
+.partly-cloudy {
+    background-image: url("pexels-pixabay-46160.jpg");
+}
+
+.cloudy {
+    background-image: url("pexels-pixabay-52531.jpg");
+}
+
+.overcast {
+    background-image: url("antoine-barres-o4u8pFwSiQE-unsplash.jpg");
+}
+
+.mist {
+    background-image: url("chris-lawton-6tfO1M8_gas-unsplash.jpg");
+}
+
+.rain {
+    background-image: url("eutah-mizushima-F-t5EpfQNpk-unsplash.jpg");
+}
+
+.snow {
+    background-image: url("pexels-simon-berger-3462588.jpg");
+}
+
+.sleet {
+    background-image: url("pexels-arthouse-studio-4338012.jpg");
+}
+
+.thunder {
+    background-image: url("pexels-andre-furtado-1162251.jpg");
+}
+
+.rain-thunder {
+    background-image: url("basil-smith-KmsDi5XH__0-unsplash.jpg");
+}
+
+.snow-thunder {
+    background-image: url("fantasy-3412305_1280.jpg");
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input {
+    padding: 8px;
+    width: 400px;
+}
+
+button {
+    padding: 16px;
+    border: none;
+    border-radius: 32px;
+    background-color: lightblue;
+    cursor: pointer;
+    width: 200px;
+}
+
+button:hover {
+    background-color: skyblue;
+}
+
+p {
+    height: 18px;
+}
+
+h3 {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+a {
+    color: white;
+}
