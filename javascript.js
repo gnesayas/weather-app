@@ -45,6 +45,7 @@
   }
 
   const container = document.querySelector(".container");
+  const info = document.querySelector(".info");
   const nameHeader = document.getElementById("name");
   const timeHeader = document.getElementById("time");
   const regionHeader = document.getElementById("region");
@@ -117,12 +118,12 @@
     windSpeed.textContent = `Wind Speed: ${internationalWind}KPH (${imperialWind}MPH)`;
   }
 
-  function displayWeatherCondition(condition) {
+  function displayWeatherCondition(description) {
     container.className = "container";
     footer.replaceChildren();
     footer.textContent = "Image by ";
     const pictureLink = document.createElement("a");
-    if (condition === "Sunny") {
+    if (description === "Sunny") {
       container.classList.add("sunny");
       pictureLink.setAttribute(
         "href",
@@ -130,7 +131,7 @@
       );
       pictureLink.textContent = "Grooveland Designs";
       footer.appendChild(pictureLink);
-    } else if (condition === "Clear") {
+    } else if (description === "Clear") {
       container.classList.add("clear");
       pictureLink.setAttribute(
         "href",
@@ -138,7 +139,7 @@
       );
       pictureLink.textContent = "Pixabay";
       footer.appendChild(pictureLink);
-    } else if (condition === "Partly cloudy") {
+    } else if (description === "Partly cloudy") {
       container.classList.add("partly-cloudy");
       pictureLink.setAttribute(
         "href",
@@ -146,7 +147,7 @@
       );
       pictureLink.textContent = "Pixabay";
       footer.appendChild(pictureLink);
-    } else if (condition === "Cloudy") {
+    } else if (description === "Cloudy") {
       container.classList.add("cloudy");
       pictureLink.setAttribute(
         "href",
@@ -154,7 +155,7 @@
       );
       pictureLink.textContent = "Pixabay";
       footer.appendChild(pictureLink);
-    } else if (condition === "Overcast") {
+    } else if (description === "Overcast") {
       container.classList.add("overcast");
       pictureLink.setAttribute(
         "href",
@@ -163,9 +164,9 @@
       pictureLink.textContent = "Antoine Barrès on Unsplash";
       footer.appendChild(pictureLink);
     } else if (
-      condition === "Mist" ||
-      condition === "Fog" ||
-      condition === "Freezing fog"
+      description === "Mist" ||
+      description === "Fog" ||
+      description === "Freezing fog"
     ) {
       container.classList.add("mist");
       pictureLink.setAttribute(
@@ -175,23 +176,23 @@
       pictureLink.textContent = "Chris Lawton on Unsplash";
       footer.appendChild(pictureLink);
     } else if (
-      condition === "Patchy rain possible" ||
-      condition === "Patchy freezing drizzle possible" ||
-      condition === "Patchy light drizzle" ||
-      condition === "Light drizzle" ||
-      condition === "Freezing drizzle" ||
-      condition === "Heavy freezing drizzle" ||
-      condition === "Patchy light rain" ||
-      condition === "Light rain" ||
-      condition === "Moderate rain at times" ||
-      condition === "Moderate rain" ||
-      condition === "Heavy rain at times" ||
-      condition === "Heavy rain" ||
-      condition === "Light freezing rain" ||
-      condition === "Moderate or heavy freezing rain" ||
-      condition === "Light rain shower" ||
-      condition === "Moderate or heavy rain shower" ||
-      condition === "Torrential rain shower"
+      description === "Patchy rain possible" ||
+      description === "Patchy freezing drizzle possible" ||
+      description === "Patchy light drizzle" ||
+      description === "Light drizzle" ||
+      description === "Freezing drizzle" ||
+      description === "Heavy freezing drizzle" ||
+      description === "Patchy light rain" ||
+      description === "Light rain" ||
+      description === "Moderate rain at times" ||
+      description === "Moderate rain" ||
+      description === "Heavy rain at times" ||
+      description === "Heavy rain" ||
+      description === "Light freezing rain" ||
+      description === "Moderate or heavy freezing rain" ||
+      description === "Light rain shower" ||
+      description === "Moderate or heavy rain shower" ||
+      description === "Torrential rain shower"
     ) {
       container.classList.add("rain");
       pictureLink.setAttribute(
@@ -201,17 +202,17 @@
       pictureLink.textContent = "Eutah Mizushima on Unsplash";
       footer.appendChild(pictureLink);
     } else if (
-      condition === "Patchy snow possible" ||
-      condition === "Blowing snow" ||
-      condition === "Blizzard" ||
-      condition === "Patchy light snow" ||
-      condition === "Light snow" ||
-      condition === "Patchy moderate snow" ||
-      condition === "Moderate snow" ||
-      condition === "Patchy heavy snow" ||
-      condition === "Heavy snow" ||
-      condition === "Light snow showers" ||
-      condition === "Moderate or heavy snow showers"
+      description === "Patchy snow possible" ||
+      description === "Blowing snow" ||
+      description === "Blizzard" ||
+      description === "Patchy light snow" ||
+      description === "Light snow" ||
+      description === "Patchy moderate snow" ||
+      description === "Moderate snow" ||
+      description === "Patchy heavy snow" ||
+      description === "Heavy snow" ||
+      description === "Light snow showers" ||
+      description === "Moderate or heavy snow showers"
     ) {
       container.classList.add("snow");
       pictureLink.setAttribute(
@@ -221,14 +222,14 @@
       pictureLink.textContent = "Simon Berger";
       footer.appendChild(pictureLink);
     } else if (
-      condition === "Patchy sleet possible" ||
-      condition === "Light sleet" ||
-      condition === "Moderate or heavy sleet" ||
-      condition === "Ice pellets" ||
-      condition === "Light sleet showers" ||
-      condition === "Moderate or heavy sleet showers" ||
-      condition === "Light showers of ice pellets" ||
-      condition === "Moderate or heavy showers of ice pellets"
+      description === "Patchy sleet possible" ||
+      description === "Light sleet" ||
+      description === "Moderate or heavy sleet" ||
+      description === "Ice pellets" ||
+      description === "Light sleet showers" ||
+      description === "Moderate or heavy sleet showers" ||
+      description === "Light showers of ice pellets" ||
+      description === "Moderate or heavy showers of ice pellets"
     ) {
       container.classList.add("sleet");
       pictureLink.setAttribute(
@@ -237,7 +238,7 @@
       );
       pictureLink.textContent = "ArtHouse Studio";
       footer.appendChild(pictureLink);
-    } else if (condition === "Thundery outbreaks possible") {
+    } else if (description === "Thundery outbreaks possible") {
       container.classList.add("thunder");
       pictureLink.setAttribute(
         "href",
@@ -246,8 +247,8 @@
       pictureLink.textContent = "Andre Furtado";
       footer.appendChild(pictureLink);
     } else if (
-      condition === "Patchy light rain with thunder" ||
-      condition === "Moderate or heavy rain with thunder"
+      description === "Patchy light rain with thunder" ||
+      description === "Moderate or heavy rain with thunder"
     ) {
       container.classList.add("rain-thunder");
       pictureLink.setAttribute(
@@ -257,8 +258,8 @@
       pictureLink.textContent = "Basil Smith on Unsplash";
       footer.appendChild(pictureLink);
     } else if (
-      condition === "Patchy light snow with thunder" ||
-      condition === "Moderate or heavy snow with thunder"
+      description === "Patchy light snow with thunder" ||
+      description === "Moderate or heavy snow with thunder"
     ) {
       container.classList.add("snow-thunder");
       pictureLink.setAttribute(
@@ -268,6 +269,7 @@
       pictureLink.textContent = "Stefan Keller from Pixabay";
       footer.appendChild(pictureLink);
     }
+    info.className = "info flex";
   }
 
   const input = document.querySelector("input");
