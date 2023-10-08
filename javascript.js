@@ -28,12 +28,10 @@
 
   function processResponse(response) {
     result = {};
-    result.icon = response.current.condition.icon;
     result.text = response.current.condition.text;
     result.feelsLikeC = response.current.feelslike_c;
     result.feelsLikeF = response.current.feelslike_f;
     result.humidity = response.current.humidity;
-    result.lastSearch = response.current.last_updated;
     result.tempC = response.current.temp_c;
     result.tempF = response.current.temp_f;
     result.windDir = response.current.wind_dir;
@@ -47,164 +45,39 @@
   }
 
   const container = document.querySelector(".container");
+  const nameHeader = document.getElementById("name");
+  const timeHeader = document.getElementById("time");
+  const regionHeader = document.getElementById("region");
+  const countryHeader = document.getElementById("country");
+  const condition = document.getElementById("condition");
+  const temp = document.getElementById("temp");
+  const feelTemp = document.getElementById("feelTemp");
+  const windSpeed = document.getElementById("windSpeed");
+  const windDir = document.getElementById("windDir");
+  const humidity = document.getElementById("humidity");
   const errorP = document.querySelector("p");
-  const footer = document.querySelector("h3");
+  const footer = document.getElementById("footer");
 
   function processUserInput(location) {
     getWeather(location)
       .then(function (response) {
         const result = processResponse(response);
-        console.log(result.text);
-        container.className = "container";
-        footer.replaceChildren();
-        footer.textContent = "Image by ";
-        const pictureLink = document.createElement("a");
-        if (result.text === "Sunny") {
-          container.classList.add("sunny");
-          pictureLink.setAttribute(
-            "href",
-            "https://unsplash.com/photos/zjoydJb17mE"
-          );
-          pictureLink.textContent = "Grooveland Designs";
-          footer.appendChild(pictureLink);
-        } else if (result.text === "Clear") {
-          container.classList.add("clear");
-          pictureLink.setAttribute(
-            "href",
-            "https://www.pexels.com/photo/green-tree-268533/"
-          );
-          pictureLink.textContent = "Pixabay";
-          footer.appendChild(pictureLink);
-        } else if (result.text === "Partly cloudy") {
-          container.classList.add("partly-cloudy");
-          pictureLink.setAttribute(
-            "href",
-            "https://www.pexels.com/photo/brown-field-and-blue-sky-46160/"
-          );
-          pictureLink.textContent = "Pixabay";
-          footer.appendChild(pictureLink);
-        } else if (result.text === "Cloudy") {
-          container.classList.add("cloudy");
-          pictureLink.setAttribute(
-            "href",
-            "https://www.pexels.com/photo/gray-rolled-asphalt-road-under-cloudy-sky-52531/"
-          );
-          pictureLink.textContent = "Pixabay";
-          footer.appendChild(pictureLink);
-        } else if (result.text === "Overcast") {
-          container.classList.add("overcast");
-          pictureLink.setAttribute(
-            "href",
-            "https://unsplash.com/photos/o4u8pFwSiQE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-          );
-          pictureLink.textContent = "Antoine Barrès on Unsplash";
-          footer.appendChild(pictureLink);
-        } else if (
-          result.text === "Mist" ||
-          result.text === "Fog" ||
-          result.text === "Freezing fog"
-        ) {
-          container.classList.add("mist");
-          pictureLink.setAttribute(
-            "href",
-            "https://unsplash.com/photos/6tfO1M8_gas?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-          );
-          pictureLink.textContent = "Chris Lawton on Unsplash";
-          footer.appendChild(pictureLink);
-        } else if (
-          result.text === "Patchy rain possible" ||
-          result.text === "Patchy freezing drizzle possible" ||
-          result.text === "Patchy light drizzle" ||
-          result.text === "Light drizzle" ||
-          result.text === "Freezing drizzle" ||
-          result.text === "Heavy freezing drizzle" ||
-          result.text === "Patchy light rain" ||
-          result.text === "Light rain" ||
-          result.text === "Moderate rain at times" ||
-          result.text === "Moderate rain" ||
-          result.text === "Heavy rain at times" ||
-          result.text === "Heavy rain" ||
-          result.text === "Light freezing rain" ||
-          result.text === "Moderate or heavy freezing rain" ||
-          result.text === "Light rain shower" ||
-          result.text === "Moderate or heavy rain shower" ||
-          result.text === "Torrential rain shower"
-        ) {
-          container.classList.add("rain");
-          pictureLink.setAttribute(
-            "href",
-            "https://unsplash.com/photos/F-t5EpfQNpk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-          );
-          pictureLink.textContent = "Eutah Mizushima on Unsplash";
-          footer.appendChild(pictureLink);
-        } else if (
-          result.text === "Patchy snow possible" ||
-          result.text === "Blowing snow" ||
-          result.text === "Blizzard" ||
-          result.text === "Patchy light snow" ||
-          result.text === "Light snow" ||
-          result.text === "Patchy moderate snow" ||
-          result.text === "Moderate snow" ||
-          result.text === "Patchy heavy snow" ||
-          result.text === "Heavy snow" ||
-          result.text === "Light snow showers" ||
-          result.text === "Moderate or heavy snow showers"
-        ) {
-          container.classList.add("snow");
-          pictureLink.setAttribute(
-            "href",
-            "https://www.pexels.com/photo/photo-of-snowy-field-3462588/"
-          );
-          pictureLink.textContent = "Simon Berger";
-          footer.appendChild(pictureLink);
-        } else if (
-          result.text === "Patchy sleet possible" ||
-          result.text === "Light sleet" ||
-          result.text === "Moderate or heavy sleet" ||
-          result.text === "Ice pellets" ||
-          result.text === "Light sleet showers" ||
-          result.text === "Moderate or heavy sleet showers" ||
-          result.text === "Light showers of ice pellets" ||
-          result.text === "Moderate or heavy showers of ice pellets"
-        ) {
-          container.classList.add("sleet");
-          pictureLink.setAttribute(
-            "href",
-            "https://www.pexels.com/photo/dry-grass-covered-with-ice-in-sunny-day-4338012/"
-          );
-          pictureLink.textContent = "ArtHouse Studio";
-          footer.appendChild(pictureLink);
-        } else if (result.text === "Thundery outbreaks possible") {
-          container.classList.add("thunder");
-          pictureLink.setAttribute(
-            "href",
-            "https://www.pexels.com/photo/lightning-and-gray-clouds-1162251/"
-          );
-          pictureLink.textContent = "Andre Furtado";
-          footer.appendChild(pictureLink);
-        } else if (
-          result.text === "Patchy light rain with thunder" ||
-          result.text === "Moderate or heavy rain with thunder"
-        ) {
-          container.classList.add("rain-thunder");
-          pictureLink.setAttribute(
-            "href",
-            "https://unsplash.com/photos/KmsDi5XH__0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-          );
-          pictureLink.textContent = "Basil Smith on Unsplash";
-          footer.appendChild(pictureLink);
-        } else if (
-          result.text === "Patchy light snow with thunder" ||
-          result.text === "Moderate or heavy snow with thunder"
-        ) {
-          container.classList.add("snow-thunder");
-          pictureLink.setAttribute(
-            "href",
-            "https://pixabay.com/users/kellepics-4893063/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3412305"
-          );
-          pictureLink.textContent = "Stefan Keller from Pixabay";
-          footer.appendChild(pictureLink);
-        }
+        displayLocationInfo(
+          result.name,
+          result.localTime,
+          result.region,
+          result.country
+        );
+        displaySingleMeasurements(result.text, result.windDir, result.humidity);
+        displayDoubleMeasurements(
+          result.tempC,
+          result.feelsLikeC,
+          result.windKPH,
+          result.tempF,
+          result.feelsLikeF,
+          result.windMPH
+        );
+        displayWeatherCondition(result.text);
         errorP.textContent = "";
       })
       .catch(function (error) {
@@ -214,6 +87,187 @@
           errorP.textContent = error;
         }
       });
+  }
+
+  function displayLocationInfo(name, time, region, country) {
+    nameHeader.textContent = `Location: ${name}`;
+    timeHeader.textContent = `Local time: ${time.substring(
+      result.localTime.indexOf(" ") + 1
+    )}`;
+    regionHeader.textContent = `Region: ${region}`;
+    countryHeader.textContent = `Country: ${country}`;
+  }
+
+  function displaySingleMeasurements(conditionInfo, direction, humidityInfo) {
+    condition.textContent = conditionInfo;
+    windDir.textContent = `Wind Direction: ${direction}`;
+    humidity.textContent = `Humidity: ${humidityInfo}%`;
+  }
+
+  function displayDoubleMeasurements(
+    internationalTemp,
+    internationalFeel,
+    internationalWind,
+    imperialTemp,
+    imperialFeel,
+    imperialWind
+  ) {
+    temp.textContent = `Temp: ${internationalTemp}\xB0C (${imperialTemp}\xB0F)`;
+    feelTemp.textContent = `Feels Like: ${internationalFeel}\xB0C (${imperialFeel}\xB0F)`;
+    windSpeed.textContent = `Wind Speed: ${internationalWind}KPH (${imperialWind}MPH)`;
+  }
+
+  function displayWeatherCondition(condition) {
+    container.className = "container";
+    footer.replaceChildren();
+    footer.textContent = "Image by ";
+    const pictureLink = document.createElement("a");
+    if (condition === "Sunny") {
+      container.classList.add("sunny");
+      pictureLink.setAttribute(
+        "href",
+        "https://unsplash.com/photos/zjoydJb17mE"
+      );
+      pictureLink.textContent = "Grooveland Designs";
+      footer.appendChild(pictureLink);
+    } else if (condition === "Clear") {
+      container.classList.add("clear");
+      pictureLink.setAttribute(
+        "href",
+        "https://www.pexels.com/photo/green-tree-268533/"
+      );
+      pictureLink.textContent = "Pixabay";
+      footer.appendChild(pictureLink);
+    } else if (condition === "Partly cloudy") {
+      container.classList.add("partly-cloudy");
+      pictureLink.setAttribute(
+        "href",
+        "https://www.pexels.com/photo/brown-field-and-blue-sky-46160/"
+      );
+      pictureLink.textContent = "Pixabay";
+      footer.appendChild(pictureLink);
+    } else if (condition === "Cloudy") {
+      container.classList.add("cloudy");
+      pictureLink.setAttribute(
+        "href",
+        "https://www.pexels.com/photo/gray-rolled-asphalt-road-under-cloudy-sky-52531/"
+      );
+      pictureLink.textContent = "Pixabay";
+      footer.appendChild(pictureLink);
+    } else if (condition === "Overcast") {
+      container.classList.add("overcast");
+      pictureLink.setAttribute(
+        "href",
+        "https://unsplash.com/photos/o4u8pFwSiQE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      );
+      pictureLink.textContent = "Antoine Barrès on Unsplash";
+      footer.appendChild(pictureLink);
+    } else if (
+      condition === "Mist" ||
+      condition === "Fog" ||
+      condition === "Freezing fog"
+    ) {
+      container.classList.add("mist");
+      pictureLink.setAttribute(
+        "href",
+        "https://unsplash.com/photos/6tfO1M8_gas?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      );
+      pictureLink.textContent = "Chris Lawton on Unsplash";
+      footer.appendChild(pictureLink);
+    } else if (
+      condition === "Patchy rain possible" ||
+      condition === "Patchy freezing drizzle possible" ||
+      condition === "Patchy light drizzle" ||
+      condition === "Light drizzle" ||
+      condition === "Freezing drizzle" ||
+      condition === "Heavy freezing drizzle" ||
+      condition === "Patchy light rain" ||
+      condition === "Light rain" ||
+      condition === "Moderate rain at times" ||
+      condition === "Moderate rain" ||
+      condition === "Heavy rain at times" ||
+      condition === "Heavy rain" ||
+      condition === "Light freezing rain" ||
+      condition === "Moderate or heavy freezing rain" ||
+      condition === "Light rain shower" ||
+      condition === "Moderate or heavy rain shower" ||
+      condition === "Torrential rain shower"
+    ) {
+      container.classList.add("rain");
+      pictureLink.setAttribute(
+        "href",
+        "https://unsplash.com/photos/F-t5EpfQNpk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      );
+      pictureLink.textContent = "Eutah Mizushima on Unsplash";
+      footer.appendChild(pictureLink);
+    } else if (
+      condition === "Patchy snow possible" ||
+      condition === "Blowing snow" ||
+      condition === "Blizzard" ||
+      condition === "Patchy light snow" ||
+      condition === "Light snow" ||
+      condition === "Patchy moderate snow" ||
+      condition === "Moderate snow" ||
+      condition === "Patchy heavy snow" ||
+      condition === "Heavy snow" ||
+      condition === "Light snow showers" ||
+      condition === "Moderate or heavy snow showers"
+    ) {
+      container.classList.add("snow");
+      pictureLink.setAttribute(
+        "href",
+        "https://www.pexels.com/photo/photo-of-snowy-field-3462588/"
+      );
+      pictureLink.textContent = "Simon Berger";
+      footer.appendChild(pictureLink);
+    } else if (
+      condition === "Patchy sleet possible" ||
+      condition === "Light sleet" ||
+      condition === "Moderate or heavy sleet" ||
+      condition === "Ice pellets" ||
+      condition === "Light sleet showers" ||
+      condition === "Moderate or heavy sleet showers" ||
+      condition === "Light showers of ice pellets" ||
+      condition === "Moderate or heavy showers of ice pellets"
+    ) {
+      container.classList.add("sleet");
+      pictureLink.setAttribute(
+        "href",
+        "https://www.pexels.com/photo/dry-grass-covered-with-ice-in-sunny-day-4338012/"
+      );
+      pictureLink.textContent = "ArtHouse Studio";
+      footer.appendChild(pictureLink);
+    } else if (condition === "Thundery outbreaks possible") {
+      container.classList.add("thunder");
+      pictureLink.setAttribute(
+        "href",
+        "https://www.pexels.com/photo/lightning-and-gray-clouds-1162251/"
+      );
+      pictureLink.textContent = "Andre Furtado";
+      footer.appendChild(pictureLink);
+    } else if (
+      condition === "Patchy light rain with thunder" ||
+      condition === "Moderate or heavy rain with thunder"
+    ) {
+      container.classList.add("rain-thunder");
+      pictureLink.setAttribute(
+        "href",
+        "https://unsplash.com/photos/KmsDi5XH__0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      );
+      pictureLink.textContent = "Basil Smith on Unsplash";
+      footer.appendChild(pictureLink);
+    } else if (
+      condition === "Patchy light snow with thunder" ||
+      condition === "Moderate or heavy snow with thunder"
+    ) {
+      container.classList.add("snow-thunder");
+      pictureLink.setAttribute(
+        "href",
+        "https://pixabay.com/users/kellepics-4893063/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3412305"
+      );
+      pictureLink.textContent = "Stefan Keller from Pixabay";
+      footer.appendChild(pictureLink);
+    }
   }
 
   const input = document.querySelector("input");
